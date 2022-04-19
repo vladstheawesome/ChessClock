@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="1.0"
+    tools:context=".MainActivity"
+    android:baselineAligned="false">
+
+
+
+    <!--<Button
+        android:id="@+id/buttonWhite"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:backgroundTint="@color/teal_200"
+        android:text="@string/time_white"
+        android:textColor="#5E35B1"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/buttonBlack"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:backgroundTint="@color/bg_black"
+        android:text="@string/time_black"
+        android:textSize="12sp"
+        style="?android:attr/buttonBarButtonStyle" /> -->
+
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:id="@+id/frameWhiteContainer"
+        android:layout_height="match_parent"
+        android:layout_weight=".45"
+        android:background="@color/bg_white"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/textTimeWhite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="82sp"
+            android:layout_marginTop="90dp"
+            android:layout_marginLeft="25dp"
+            android:textColor="@color/bg_black"
+            android:fontFamily="@font/franklight"
+            android:text="@string/time_white" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/frameDividerContainer"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight=".10"
+        android:background="@color/bg_divider"
+        android:clickable="true"
+        android:orientation="vertical"
+        tools:ignore="SpeakableTextPresentCheck"></FrameLayout>
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:id="@+id/frameBlackContainer"
+        android:layout_height="match_parent"
+        android:layout_weight=".45"
+        android:background="@color/bg_black"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:focusable="true">
+
+        <TextView
+            android:id="@+id/textTimeBlack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="82sp"
+            android:layout_marginTop="90dp"
+            android:layout_marginLeft="25dp"
+            android:textColor="@color/bg_white"
+            android:fontFamily="@font/franklight"
+            android:text="@string/time_black" />
+    </FrameLayout>
+
+
+</LinearLayout>
