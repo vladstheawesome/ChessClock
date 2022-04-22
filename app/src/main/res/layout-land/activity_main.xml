@@ -4,19 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:weightSum="1.0"
     tools:context=".MainActivity"
     android:baselineAligned="false">
 
+
+
+    <!--<Button
+        android:id="@+id/buttonWhite"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:backgroundTint="@color/teal_200"
+        android:text="@string/time_white"
+        android:textColor="#5E35B1"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/buttonBlack"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight=".5"
+        android:backgroundTint="@color/bg_black"
+        android:text="@string/time_black"
+        android:textSize="12sp"
+        style="?android:attr/buttonBarButtonStyle" /> -->
+
+
     <FrameLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:id="@+id/frameWhiteContainer"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight=".45"
         android:background="@color/bg_white"
         android:clickable="true"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:focusable="true">
 
         <TextView
@@ -33,22 +57,22 @@
 
     <FrameLayout
         android:id="@+id/frameDividerContainer"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:layout_weight=".10"
         android:background="@color/bg_divider"
         android:clickable="true"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck"></FrameLayout>
 
     <FrameLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:id="@+id/frameBlackContainer"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight=".45"
         android:background="@color/bg_black"
         android:clickable="true"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:focusable="true">
 
         <TextView
