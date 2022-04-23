@@ -28,6 +28,8 @@
             android:layout_marginLeft="25dp"
             android:textColor="@color/bg_black"
             android:fontFamily="@font/franklight"
+
+            android:rotation="180"
             android:text="@string/time_white" />
     </FrameLayout>
 
