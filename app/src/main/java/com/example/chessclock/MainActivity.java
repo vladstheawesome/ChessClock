@@ -1,5 +1,6 @@
 package com.example.chessclock;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -10,8 +11,6 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import java.util.concurrent.TimeUnit;
-
 public class MainActivity extends AppCompatActivity {
 
     TextView textTimeWhite;
@@ -21,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout frameBlackContainer;
 
     private CountDownTimer countDownTimer;
-    private long timeLeftInMilliseconds = 60000; // 10mins
+    private long timeLeftInMilliseconds = 1800000; // 30mins
 
     private boolean whiteTimeRunning;
     private boolean blackTimeRunning;
@@ -41,12 +40,24 @@ public class MainActivity extends AppCompatActivity {
         frameWhiteContainer = findViewById(R.id.frameWhiteContainer);
         frameBlackContainer = findViewById(R.id.frameBlackContainer);
 
+        // Click event for White
         frameWhiteContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startStopWhite();
             }
         });
+
+        // Click event for Black
+        frameBlackContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startStopBlack();
+            }
+        });
+
+        updateWhiteTimer();
+        updateBlackTimer();
     }
 
     public void startStopWhite()
@@ -54,16 +65,39 @@ public class MainActivity extends AppCompatActivity {
         if (whiteTimeRunning)
         {
             stopWhiteTimer();
+            startBlackTimer();
         }
         else
         {
             startWhiteTimer();
+            stopBlackTimer();
+        }
+    }
+
+    public void startStopBlack()
+    {
+        if (blackTimeRunning)
+        {
+            stopBlackTimer();
+            startWhiteTimer();
+        }
+        else
+        {
+            startBlackTimer();
+            stopWhiteTimer();
         }
     }
 
     private void stopWhiteTimer() {
         countDownTimer.cancel();
         whiteTimeRunning = false;
+        blackTimeRunning = true;
+    }
+
+    private void stopBlackTimer() {
+        countDownTimer.cancel();
+        whiteTimeRunning = true;
+        blackTimeRunning = false;
     }
 
     private void startWhiteTimer() {
@@ -84,7 +118,39 @@ public class MainActivity extends AppCompatActivity {
         whiteTimeRunning = true;
     }
 
+    private void startBlackTimer() {
+
+        countDownTimer = new CountDownTimer(timeLeftInMilliseconds, 1000) {
+            @Override
+            public void onTick(long l) {
+                timeLeftInMilliseconds = l;
+                updateBlackTimer();
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
+
+        blackTimeRunning = true;
+    }
+
     private void updateWhiteTimer() {
+        String timeLeftForWhite = getTimeLeft();
+
+        textTimeWhite.setText(timeLeftForWhite);
+    }
+
+    private void updateBlackTimer()
+    {
+        String timeLeftForBlack = getTimeLeft();
+
+        textTimeBlack.setText(timeLeftForBlack);
+    }
+
+    @NonNull
+    private String getTimeLeft() {
         int hours = (int) timeLeftInMilliseconds / 3600000;
         int minutes = (int) timeLeftInMilliseconds / 60000;
         int seconds = (int) timeLeftInMilliseconds % 60000 / 1000;
@@ -98,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (seconds < 10) timeLeft += "0"; // always get 2 digits for seconds
         timeLeft += seconds;
-
-        textTimeWhite.setText(timeLeft);
+        return timeLeft;
     }
 }
